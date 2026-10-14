@@ -309,6 +309,7 @@
             <div class="btn-group">
                 <button class="btn-secondary" onclick="refreshData()">🔄 Refresh</button>
                 <button class="btn-danger" onclick="clearAllData()">🗑️ Clear All</button>
+                <button class="btn-secondary" onclick="logout()">🔐 Logout</button>
             </div>
         </div>
 
@@ -369,6 +370,27 @@
     </div>
 
     <script>
+        // Password protection
+        const ANALYTICS_PASSWORD = 'MGT709';
+        
+        function initializeAnalytics() {
+            const isAuthenticated = sessionStorage.getItem('analyticsAuth');
+            if (!isAuthenticated) {
+                const password = prompt('🔐 Enter analytics password:');
+                if (password !== ANALYTICS_PASSWORD) {
+                    alert('Incorrect password');
+                    window.location.href = 'index.html';
+                    return;
+                }
+                sessionStorage.setItem('analyticsAuth', 'true');
+            }
+        }
+
+        // Check password on load
+        window.addEventListener('load', function() {
+            initializeAnalytics();
+        });
+
         function trackEvent(eventType, data = {}) {
             let events = JSON.parse(localStorage.getItem('pawstrideAnalytics') || '[]');
             const event = {
@@ -588,6 +610,13 @@
                 localStorage.removeItem('petPTSubmissions');
                 refreshData();
                 alert('All data cleared');
+            }
+        }
+
+        function logout() {
+            if (confirm('Log out of analytics?')) {
+                sessionStorage.removeItem('analyticsAuth');
+                window.location.reload();
             }
         }
 
