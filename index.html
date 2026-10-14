@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On the Move Pet Rehab - Mobile Pet Physical Therapy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #0d5a6d;
+            --primary-dark: #063d4a;
+            --accent: #7fa39e;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --gray: #64748b;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 2rem;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo img {
+            height: 120px;
+            width: auto;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 400px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: white;
+            color: var(--primary);
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: var(--dark);
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-card p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .how-it-works {
+            background: var(--light);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            text-align: center;
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .form-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .form-section h2 {
+            margin-bottom: 2rem;
+        }
+
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .submit-button {
+            background: var(--accent);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #db2777;
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav a {
+                margin-left: 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        .success-message {
+            display: none;
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .quiz-screen {
+            display: none;
+        }
+
+        .quiz-screen.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .quiz-screen h3 {
+            color: white !important;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .quiz-option-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 2px solid white;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .quiz-option-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .quiz-checkbox-btn {
+            display: block;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            color: white;
+            font-weight: 500;
+            text-align: left;
+        }
+
+        .quiz-checkbox-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: white;
+        }
+
+        .quiz-checkbox-btn input[type="checkbox"] {
+            margin-right: 0.75rem;
+            accent-color: white;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .quiz-checkbox-btn input[type="checkbox"]:checked + span {
+            color: #fbbf24;
+        }
+
+        /* Scheduler Modal Styles */
+        .scheduler-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .scheduler-modal.active {
+            display: flex;
+        }
+
+        .scheduler-content {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .scheduler-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .scheduler-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .close-scheduler {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .close-scheduler:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .scheduler-body {
+            padding: 2rem;
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .schedule-screen {
+            display: none;
+        }
+
+        .schedule-screen.active {
+            display: block;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .schedule-screen h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .schedule-option {
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+
+        .schedule-option:hover {
+            border-color: var(--primary);
+            background: #f0f4ff;
+        }
+
+        .schedule-option.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .schedule-checkbox {
+            display: flex;
+            align-items: center;
+            background: var(--light);
+            border: 2px solid #e2e8f0;
+            padding: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 0.75rem;
+            transition: all 0.2s;
+        }
+
+        .schedule-checkbox:hover {
+            border-color: var(--primary);
+            background: #f0f4ff;
+        }
+
+        .schedule-checkbox input {
+            margin-right: 0.75rem;
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
+        .schedule-checkbox.checked {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .schedule-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+
+        .schedule-btn {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .schedule-btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .schedule-btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .schedule-btn-secondary {
+            background: var(--light);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .schedule-btn-secondary:hover {
+            background: #f0f4ff;
+        }
+
+        .schedule-summary {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .schedule-summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        .schedule-summary-label {
+            color: var(--gray);
+        }
+
+        .schedule-summary-value {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .schedule-success {
+            text-align: center;
+        }
+
+        .schedule-success-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .schedule-success h3 {
+            color: var(--success);
+            margin-bottom: 1rem;
+        }
+
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .success-modal.active {
+            display: flex;
+        }
+
+        .success-modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            max-width: 400px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: popIn 0.4s ease-out;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .success-modal-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .success-modal h2 {
+            color: var(--success);
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-modal p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .success-modal-btn {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .success-modal-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .calendar-container {
+            margin-bottom: 2rem;
+        }
+
+        .calendar-month {
+            margin-bottom: 2rem;
+        }
+
+        .calendar-month h4 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 0.85rem;
+            padding: 0.5rem;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #e2e8f0;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .calendar-day:hover:not(.disabled) {
+            border-color: var(--primary);
+            background: #f0f4ff;
+        }
+
+        .calendar-day.disabled {
+            color: #cbd5e1;
+            background: #f1f5f9;
+            cursor: not-allowed;
+        }
+
+        .calendar-day.available {
+            color: var(--dark);
+        }
+
+        .calendar-day.selected {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .calendar-day.empty {
+            border: none;
+            cursor: default;
+        }
+
+        .selected-dates-display {
+            background: var(--light);
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+
+        .selected-dates-display p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .selected-dates-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .date-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .success-story {
+            background: linear-gradient(135deg, rgba(13, 90, 109, 0.1) 0%, rgba(127, 163, 158, 0.1) 100%);
+            border: 2px solid var(--accent);
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .success-story-image {
+            flex: 0 0 250px;
+            text-align: center;
+        }
+
+        .success-story-image img {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .success-story-content {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .success-story-content h3 {
+            color: var(--primary);
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .success-story-content p {
+            color: var(--gray);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .recovery-tag {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .success-story {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .success-story-image {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="On the Move Pet Rehab Logo">
+        </div>
+        <nav>
+            <a href="#benefits">Benefits</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#interest">Early Interest</a>
+            <a href="pet_pt_analytics.html" target="_blank" style="color: var(--primary); font-weight: 600;">📊 Analytics</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Physical Therapy Comes to Your Pet</h1>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem; font-style: italic; opacity: 0.95;">Helping pets move better, live happier.</p>
+            <p>Expert, in-home rehabilitation for dogs and cats recovering from injury or surgery. We come to you.</p>
+            <button class="cta-button" onclick="trackAnalytics('ctaClick'); document.getElementById('quiz-container').scrollIntoView({behavior: 'smooth'})">
+                Tell Us You're Interested
+            </button>
+        </div>
+        <div class="hero-image">
+            <img src="hero-dog.jpg" alt="Happy dog at the park">
+        </div>
+    </section>
+
+    <section class="form-section" id="quiz-section">
+        <div class="section">
+            <h2 class="section-title" style="color: white;">Does Your Pet Need Help?</h2>
+            <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Quick quiz to see what might help your pet recover and feel better.
+            </p>
+            
+            <div class="form-container" id="quiz-container">
+                <div class="success-message" id="quiz-success-msg">
+                    ✓ Thanks! We'll contact you within 24 hours to discuss your pet's care plan.
+                </div>
+
+                <!-- Quiz Screens -->
+                <div id="quiz-screen-0" class="quiz-screen active">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">What's your pet's name?</h3>
+                    <div class="form-group">
+                        <input type="text" id="pet-name" placeholder="e.g., Max, Luna" style="text-align: center; font-size: 1.1rem;">
+                    </div>
+                    <button class="submit-button" onclick="nextQuiz(1)">Next</button>
+                </div>
+
+                <div id="quiz-screen-1" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">What kind of pet?</h3>
+                    <div style="display: grid; gap: 1rem;">
+                        <button class="quiz-option-btn" onclick="selectPetType('dog'); nextQuiz(2)">🐕 Dog</button>
+                        <button class="quiz-option-btn" onclick="selectPetType('cat'); nextQuiz(2)">🐱 Cat</button>
+                        <button class="quiz-option-btn" onclick="selectPetType('other'); nextQuiz(2)">🐾 Other</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-2" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">How old is <span id="pet-name-display">your pet</span>?</h3>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectAge('young'); nextQuiz(3)">🐕 Young (0-3 years)</button>
+                        <button class="quiz-option-btn" onclick="selectAge('adult'); nextQuiz(3)">💪 Adult (4-7 years)</button>
+                        <button class="quiz-option-btn" onclick="selectAge('senior'); nextQuiz(3)">🧓 Senior (8+ years)</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-3" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">What's <span id="pet-name-display">their</span> situation?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">Select all that apply</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="arthritis">
+                            <span>Arthritis or joint pain</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="mobility">
+                            <span>Mobility or movement issues</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="surgery">
+                            <span>Recovery from surgery</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="injury">
+                            <span>Injury or sports-related damage</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="strength">
+                            <span>Weakness or muscle loss</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="issue" value="senior">
+                            <span>Senior pet (slowing down)</span>
+                        </label>
+                    </div>
+                    <button class="submit-button" onclick="nextQuiz(4)">Next</button>
+                </div>
+
+                <div id="quiz-screen-4" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">What makes traditional care difficult?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">Select all that apply</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="anxiety" onchange="toggleBarrier(this)">
+                            <span>😰 Anxiety about car rides or vet visits</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="mobility" onchange="toggleBarrier(this)">
+                            <span>🚗 Mobility issues - hard to transport</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="distance" onchange="toggleBarrier(this)">
+                            <span>📍 Far from vet clinic or limited hours</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="stress" onchange="toggleBarrier(this)">
+                            <span>😟 Stress from being handled by strangers</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="cost" onchange="toggleBarrier(this)">
+                            <span>💰 Cost of repeated clinic visits</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="barrier" value="none" onchange="toggleBarrier(this)">
+                            <span>✅ No barriers - traditional care works fine</span>
+                        </label>
+                    </div>
+                    <button class="submit-button" onclick="nextQuiz(5)">Next</button>
+                </div>
+
+                <div id="quiz-screen-5" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">How urgent is this for your pet?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">DESIRABILITY: Do you feel the pain right now?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectUrgency('asap'); nextQuiz(6)">🚨 ASAP - This is affecting daily life NOW</button>
+                        <button class="quiz-option-btn" onclick="selectUrgency('soon'); nextQuiz(6)">📍 Soon - Within next month or two</button>
+                        <button class="quiz-option-btn" onclick="selectUrgency('considering'); nextQuiz(6)">💭 Just considering - Not urgent yet</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-6" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">What's your pet's size?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">FEASIBILITY: Can we physically help your pet?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectPetSize('small'); nextQuiz(7)">🐕 Small (under 25 lbs)</button>
+                        <button class="quiz-option-btn" onclick="selectPetSize('medium'); nextQuiz(7)">🐕 Medium (25-60 lbs)</button>
+                        <button class="quiz-option-btn" onclick="selectPetSize('large'); nextQuiz(7)">🐕 Large (60+ lbs)</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-7" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Where are you located?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">FEASIBILITY: Can we reach you? (We service Sunday-Tuesday)</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <input type="text" id="zip-code" placeholder="Enter your zip code" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                    </div>
+                    <button class="submit-button" onclick="submitZipCode()">Next</button>
+                </div>
+
+                <div id="quiz-screen-8" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Which days work best for you?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">FEASIBILITY: Can you fit us into your schedule?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="days" value="sunday" onchange="toggleDay(this)">
+                            <span>☀️ Sunday</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="days" value="monday" onchange="toggleDay(this)">
+                            <span>🌙 Monday</span>
+                        </label>
+                        <label class="quiz-checkbox-btn">
+                            <input type="checkbox" name="days" value="tuesday" onchange="toggleDay(this)">
+                            <span>✌️ Tuesday</span>
+                        </label>
+                    </div>
+                    <button class="submit-button" onclick="validateDaysAndNext()">Next</button>
+                </div>
+
+                <div id="quiz-screen-9" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">How much would you invest monthly?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">VIABILITY: What's your budget for recovery?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectPrice('budget'); nextQuiz(10)">💰 Budget: $100-150/month</button>
+                        <button class="quiz-option-btn" onclick="selectPrice('moderate'); nextQuiz(10)">💪 Moderate: $150-250/month</button>
+                        <button class="quiz-option-btn" onclick="selectPrice('full'); nextQuiz(10)">❤️ Whatever it takes: $250+/month</button>
+                        <button class="quiz-option-btn" onclick="selectPrice('unsure'); nextQuiz(10)">❓ Not sure yet</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-10" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Would you book a session now?</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">VIABILITY: Are you ready to commit?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectCommitment2('yes'); nextQuiz(11)">✅ Yes, schedule a consultation</button>
+                        <button class="quiz-option-btn" onclick="selectCommitment2('maybe'); nextQuiz(11)">🤔 Maybe - need more info first</button>
+                        <button class="quiz-option-btn" onclick="selectCommitment2('later'); nextQuiz(11)">⏰ Later - not ready yet</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-11" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">How long has this been going on?</h3>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectTimeline('recent'); nextQuiz(12)">⚡ Just started (past 2 weeks)</button>
+                        <button class="quiz-option-btn" onclick="selectTimeline('ongoing'); nextQuiz(12)">📅 A few months</button>
+                        <button class="quiz-option-btn" onclick="selectTimeline('chronic'); nextQuiz(12)">⏳ Long-term (6+ months)</button>
+                    </div>
+                </div>
+
+                <div id="quiz-screen-12" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Here's what might help:</h3>
+                    <div id="recommendations" style="background: rgba(255,255,255,0.1); padding: 1.5rem; border-radius: 8px; margin-bottom: 1.5rem; text-align: center;">
+                        <p id="rec-text" style="font-size: 1.1rem; line-height: 1.6;"></p>
+                    </div>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem;">Ready to get started? Fill in your contact info below.</p>
+                    
+                    <button class="submit-button" onclick="nextQuiz(13)" style="background: var(--accent);">Next</button>
+                </div>
+
+                <div id="quiz-screen-13" class="quiz-screen">
+                    <h3 style="color: var(--primary); margin-bottom: 1.5rem; text-align: center;">Before you go...</h3>
+                    <p style="text-align: center; margin-bottom: 1.5rem; font-size: 0.95rem; opacity: 0.9;">USABILITY: Do you understand how we work?</p>
+                    <div style="display: grid; gap: 0.75rem;">
+                        <button class="quiz-option-btn" onclick="selectUnderstanding('clear'); scrollToContactForm()">✅ Yes, I understand & want to schedule</button>
+                        <button class="quiz-option-btn" onclick="selectUnderstanding('confused'); scrollToContactForm()">❓ Not totally clear, but interested</button>
+                        <button class="quiz-option-btn" onclick="selectUnderstanding('needmore'); scrollToContactForm()">📞 Need to talk to someone</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="benefits">
+        <div style="text-align: center; margin-bottom: 3rem;">
+            <button class="cta-button" onclick="openScheduler()" style="background: var(--accent); color: white; font-size: 1.1rem;">
+                📞 Schedule Free Phone Consultation
+            </button>
+        </div>
+        <h2 class="section-title">Why Choose On the Move Pet Rehab?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">🏥</div>
+                <h3>Licensed Vets</h3>
+                <p>Veterinarians with certifications in companion animal rehabilitation and acupuncture bring professional expertise to every session.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🏠</div>
+                <h3>At-Home Care</h3>
+                <p>No stressful vet clinic visits. We bring therapy to your home for your pet's comfort.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Faster Recovery</h3>
+                <p>Studies show consistent in-home therapy speeds recovery from surgery or injury.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📋</div>
+                <h3>Personalized Plans</h3>
+                <p>Custom treatment protocols based on your pet's specific condition and needs.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">💗</div>
+                <h3>Flexible Scheduling</h3>
+                <p>Weekly or twice-weekly sessions that fit your schedule. Start as soon as you're ready.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">📱</div>
+                <h3>Progress Tracking</h3>
+                <p>Digital progress reports and exercise videos to support recovery at home.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section how-it-works" id="how-it-works">
+        <h2 class="section-title">How It Works</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Initial Consultation</h3>
+                <p>Free phone assessment of your pet's condition and recovery goals.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>In-Home Evaluation</h3>
+                <p>Our therapist visits to assess mobility, pain, and create a treatment plan.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Weekly Sessions</h3>
+                <p>Hands-on therapy, exercises, and monitoring at your home on a regular schedule.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Home Program</h3>
+                <p>Daily exercises you can do between sessions to maximize recovery progress.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background: white;">
+        <h2 class="section-title">Real Results</h2>
+        <div class="success-story">
+            <div class="success-story-image">
+                <img src="twinkie-success.jpg" alt="Twinkie the chihuahua">
+            </div>
+            <div class="success-story-content">
+                <h3>🌟 Twinkie's Recovery</h3>
+                <p><strong>14-year-old Chihuahua</strong></p>
+                <p>Twinkie was paralyzed from IVDD (Intervertebral Disc Disease) for 6 months. After working with our team using physical therapy and laser therapy, he fully recovered his mobility. Though he later passed away from other causes, his recovery gave his family precious extra time together.</p>
+                <span class="recovery-tag">✓ Success Story</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="interest">
+        <div class="section">
+            <h2 class="section-title" style="color: white;">Ready to Get Started?</h2>
+            <p style="margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join our early interest list. We'll reach out to schedule a personalized consultation for your pet.
+            </p>
+            
+            <div class="form-container">
+                <div class="success-message" id="contact-success-msg">
+                    ✓ Thanks! We'll be in touch within 24 hours.
+                </div>
+                <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                    <div class="form-group">
+                        <label for="contact-name">Your Name</label>
+                        <input type="text" id="contact-name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-email">Email</label>
+                        <input type="email" id="contact-email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-phone">Phone</label>
+                        <input type="tel" id="contact-phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-pet-type">Pet Type</label>
+                        <select id="contact-pet-type" name="pet-type">
+                            <option value="">Select...</option>
+                            <option value="dog">Dog</option>
+                            <option value="cat">Cat</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact-reason">What brings you here?</label>
+                        <select id="contact-reason" name="reason">
+                            <option value="">Select...</option>
+                            <option value="recovery">Pet recovering from surgery</option>
+                            <option value="injury">Injury or mobility issue</option>
+                            <option value="senior">Senior pet care</option>
+                            <option value="general">General interest</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-button">Get Founding Member Pricing</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scheduler Modal -->
+    <div class="scheduler-modal" id="schedulerModal">
+        <div class="scheduler-content">
+            <div class="scheduler-header">
+                <h2>📅 Schedule Therapy</h2>
+                <button class="close-scheduler" onclick="closeScheduler()">×</button>
+            </div>
+            <div class="scheduler-body">
+                <!-- Screen 1: Pet Selection -->
+                <div class="schedule-screen active" id="sched-screen-0">
+                    <h3>Tell us about your pet</h3>
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="display: block; color: var(--gray); font-weight: 500; margin-bottom: 0.5rem;">Pet's Name</label>
+                        <input type="text" id="petNameInput" placeholder="e.g., Max, Luna, Fluffy" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; color: var(--gray); font-weight: 500; margin-bottom: 0.5rem;">Pet Type</label>
+                        <select id="petTypeInput" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                            <option value="">Select pet type...</option>
+                            <option value="🐕 Dog">Dog</option>
+                            <option value="🐱 Cat">Cat</option>
+                        </select>
+                    </div>
+                    <button class="schedule-btn schedule-btn-primary" style="width: 100%;" onclick="submitPetInfo()">Next</button>
+                </div>
+
+                <!-- Screen 2: Date Selection -->
+                <div class="schedule-screen" id="sched-screen-1">
+                    <h3>Pick your available dates</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;">We're available Sunday-Tuesday. Select dates for the next 4 weeks.</p>
+                    <div class="calendar-container" id="calendarContainer"></div>
+                    <div class="selected-dates-display">
+                        <p>Selected dates: <span id="selectedDatesCount">0</span></p>
+                        <div class="selected-dates-list" id="selectedDatesList"></div>
+                    </div>
+                    <div class="schedule-buttons">
+                        <button class="schedule-btn schedule-btn-secondary" onclick="prevScheduleScreen()">Back</button>
+                        <button class="schedule-btn schedule-btn-primary" onclick="validateDatesAndNext()">Next</button>
+                    </div>
+                </div>
+
+                <!-- Screen 3: Frequency -->
+                <div class="schedule-screen" id="sched-screen-2">
+                    <h3>How often does <span id="sched-pet-name-1">your pet</span> need therapy?</h3>
+                    <button class="schedule-option" onclick="selectScheduleFreq('Once a week'); nextScheduleScreen(3)">🕐 Once a week</button>
+                    <button class="schedule-option" onclick="selectScheduleFreq('Twice a week'); nextScheduleScreen(3)">💪 Twice a week</button>
+                    <button class="schedule-option" onclick="selectScheduleFreq('Three times a week'); nextScheduleScreen(3)">⚡ Three times a week</button>
+                </div>
+
+                <!-- Screen 4: Time Preference -->
+                <div class="schedule-screen" id="sched-screen-3">
+                    <h3>When does <span id="sched-pet-name-2">your pet</span> do best?</h3>
+                    <button class="schedule-option" onclick="selectScheduleTime('Morning (7am - 12pm)'); nextScheduleScreen(4)">🌅 Morning</button>
+                    <button class="schedule-option" onclick="selectScheduleTime('Afternoon (12pm - 5pm)'); nextScheduleScreen(4)">☀️ Afternoon</button>
+                    <button class="schedule-option" onclick="selectScheduleTime('Evening (5pm - 8pm)'); nextScheduleScreen(4)">🌙 Evening</button>
+                </div>
+
+                <!-- Screen 5: Goals -->
+                <div class="schedule-screen" id="sched-screen-4">
+                    <h3>What's the priority?</h3>
+                    <label class="schedule-checkbox">
+                        <input type="checkbox" value="Faster recovery" onchange="toggleScheduleGoal(this)">
+                        <span>⚡ Faster recovery</span>
+                    </label>
+                    <label class="schedule-checkbox">
+                        <input type="checkbox" value="Pain relief" onchange="toggleScheduleGoal(this)">
+                        <span>😊 Pain relief</span>
+                    </label>
+                    <label class="schedule-checkbox">
+                        <input type="checkbox" value="Strength building" onchange="toggleScheduleGoal(this)">
+                        <span>💪 Strength building</span>
+                    </label>
+                    <label class="schedule-checkbox">
+                        <input type="checkbox" value="Mobility" onchange="toggleScheduleGoal(this)">
+                        <span>🏃 Mobility improvement</span>
+                    </label>
+                    <div class="schedule-buttons">
+                        <button class="schedule-btn schedule-btn-secondary" onclick="prevScheduleScreen()">Back</button>
+                        <button class="schedule-btn schedule-btn-primary" onclick="nextScheduleScreen(5)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Screen 6: Review -->
+                <div class="schedule-screen" id="sched-screen-5">
+                    <h3>Your Plan</h3>
+                    <div class="schedule-summary">
+                        <div class="schedule-summary-item">
+                            <span class="schedule-summary-label">Pet</span>
+                            <span class="schedule-summary-value" id="sched-summary-pet">-</span>
+                        </div>
+                        <div class="schedule-summary-item">
+                            <span class="schedule-summary-label">Available Dates</span>
+                            <span class="schedule-summary-value" id="sched-summary-dates">-</span>
+                        </div>
+                        <div class="schedule-summary-item">
+                            <span class="schedule-summary-label">Frequency</span>
+                            <span class="schedule-summary-value" id="sched-summary-freq">-</span>
+                        </div>
+                        <div class="schedule-summary-item">
+                            <span class="schedule-summary-label">Time</span>
+                            <span class="schedule-summary-value" id="sched-summary-time">-</span>
+                        </div>
+                        <div class="schedule-summary-item">
+                            <span class="schedule-summary-label">Goals</span>
+                            <span class="schedule-summary-value" id="sched-summary-goals">-</span>
+                        </div>
+                    </div>
+                    <div class="schedule-buttons">
+                        <button class="schedule-btn schedule-btn-secondary" onclick="prevScheduleScreen()">Back</button>
+                        <button class="schedule-btn schedule-btn-primary" onclick="nextScheduleScreen(6)">Next</button>
+                    </div>
+                </div>
+
+                <!-- Screen 7: Contact Info -->
+                <div class="schedule-screen" id="sched-screen-6">
+                    <h3>How can we reach you?</h3>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; color: var(--gray); font-weight: 500; margin-bottom: 0.5rem;">Your Name</label>
+                        <input type="text" id="schedulerName" placeholder="John Smith" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 1rem;">
+                        <label style="display: block; color: var(--gray); font-weight: 500; margin-bottom: 0.5rem;">Email</label>
+                        <input type="email" id="schedulerEmail" placeholder="john@example.com" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                    </div>
+                    <div style="margin-bottom: 2rem;">
+                        <label style="display: block; color: var(--gray); font-weight: 500; margin-bottom: 0.5rem;">Phone</label>
+                        <input type="tel" id="schedulerPhone" placeholder="(555) 123-4567" style="width: 100%; padding: 0.75rem; border: 2px solid #e2e8f0; border-radius: 6px; font-size: 1rem;">
+                    </div>
+                    <div class="schedule-buttons">
+                        <button class="schedule-btn schedule-btn-secondary" onclick="prevScheduleScreen()">Back</button>
+                        <button class="schedule-btn schedule-btn-primary" onclick="submitSchedulerBooking()">Book Appointment</button>
+                    </div>
+                </div>
+
+                <!-- Screen 8: Success -->
+                <div class="schedule-screen" id="sched-screen-7">
+                    <div class="schedule-success">
+                        <div class="schedule-success-icon">✅</div>
+                        <h3>You're all set!</h3>
+                        <p style="color: var(--gray); margin-bottom: 1rem;">Your therapy schedule is saved. We'll confirm your first appointment within 24 hours.</p>
+                        <button class="schedule-btn schedule-btn-primary" onclick="closeScheduler()" style="width: 100%;">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-modal" id="successModal">
+        <div class="success-modal-content">
+            <div class="success-modal-icon">✅</div>
+            <h2>You're All Set!</h2>
+            <p>You've been added to our interest list. We'll be in touch soon to schedule your free phone consultation.</p>
+            <button class="success-modal-btn" onclick="closeSuccessModal()">Done</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2026 On the Move Pet Rehab. Mobile Pet Physical Therapy for Your Best Friend.</p>
+    </footer>
+
+    <script>
+        // Quiz state
+        let quizData = {
+            petName: '',
+            petType: '',
+            age: '',
+            issues: [],
+            barriers: [],
+            timeline: '',
+            commitment: '',
+            urgency: '',
+            petSize: '',
+            accessibility: '',
+            serviceDays: '',
+            willingToPay: '',
+            preCommit: '',
+            understandsProcess: ''
+        };
+
+        function nextQuiz(screenNum) {
+            // Track quiz start on first click
+            if (screenNum === 1) {
+                trackAnalytics('quizStart');
+            }
+
+            // Hide all screens
+            document.querySelectorAll('.quiz-screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            // Show target screen
+            document.getElementById(`quiz-screen-${screenNum}`).classList.add('active');
+
+            // Update pet name displays
+            if (quizData.petName) {
+                document.getElementById('pet-name-display').textContent = quizData.petName;
+                document.getElementById('pet-name-display2').textContent = quizData.petName;
+            }
+
+            // If going to recommendations, generate them
+            if (screenNum === 6) {
+                generateRecommendations();
+            }
+        }
+
+        function selectPetType(type) {
+            quizData.petType = type;
+        }
+
+        function selectAge(ageRange) {
+            quizData.age = ageRange;
+        }
+
+        function selectTimeline(timeframe) {
+            quizData.timeline = timeframe;
+        }
+
+        function selectCommitment(level) {
+            quizData.commitment = level;
+        }
+
+        function selectUrgency(level) {
+            quizData.urgency = level;
+        }
+
+        function selectPetSize(size) {
+            quizData.petSize = size;
+        }
+
+        function submitZipCode() {
+            const zip = document.getElementById('zip-code').value.trim();
+            if (!zip) {
+                alert('Please enter your zip code');
+                return;
+            }
+            quizData.accessibility = zip;
+            nextQuiz(8);
+        }
+
+        function toggleDay(checkbox) {
+            if (!quizData.serviceDays) {
+                quizData.serviceDays = [];
+            }
+            if (checkbox.checked) {
+                quizData.serviceDays.push(checkbox.value);
+            } else {
+                quizData.serviceDays = quizData.serviceDays.filter(d => d !== checkbox.value);
+            }
+        }
+
+        function validateDaysAndNext() {
+            if (!quizData.serviceDays || quizData.serviceDays.length === 0) {
+                alert('Please select at least one day');
+                return;
+            }
+            nextQuiz(9);
+        }
+
+        function selectPrice(level) {
+            quizData.willingToPay = level;
+        }
+
+        function selectCommitment2(level) {
+            quizData.preCommit = level;
+        }
+
+        function selectUnderstanding(level) {
+            quizData.understandsProcess = level;
+        }
+
+        function toggleBarrier(checkbox) {
+            if (checkbox.checked) {
+                quizData.barriers.push(checkbox.value);
+            } else {
+                quizData.barriers = quizData.barriers.filter(b => b !== checkbox.value);
+            }
+        }
+
+        function generateRecommendations() {
+            // Get selected issues
+            const checkboxes = document.querySelectorAll('input[name="issue"]:checked');
+            quizData.issues = Array.from(checkboxes).map(cb => cb.value);
+            quizData.petName = document.getElementById('pet-name').value || 'Your pet';
+
+            // Recommendation engine based on issues + commitment
+            let recommendations = [];
+            const hasArthritis = quizData.issues.includes('arthritis');
+            const hasMobility = quizData.issues.includes('mobility');
+            const hasSurgery = quizData.issues.includes('surgery');
+            const hasInjury = quizData.issues.includes('injury');
+            const hasStrength = quizData.issues.includes('strength');
+            const hasSenior = quizData.issues.includes('senior');
+
+            // Physical Therapy - universal for most conditions
+            if (hasSurgery || hasInjury || hasMobility || hasStrength) {
+                recommendations.push('💪 <strong>Physical Therapy</strong> - hands-on exercises to rebuild strength and mobility');
+            }
+
+            // Acupuncture - pain and inflammation focused
+            if (hasArthritis || hasSurgery || hasInjury || hasSenior) {
+                recommendations.push('🌿 <strong>Acupuncture</strong> - natural pain relief and accelerated healing');
+            }
+
+            // Laser Therapy - inflammation and faster recovery
+            if (hasSurgery || hasInjury || hasArthritis) {
+                recommendations.push('⚡ <strong>Laser Therapy</strong> - reduce swelling and inflammation, speed recovery');
+            }
+
+            // Floorwork - strength and mobility
+            if (hasMobility || hasStrength || hasSenior) {
+                recommendations.push('🏃 <strong>Floorwork</strong> - conditioning exercises for strength and balance');
+            }
+
+            // Build recommendation text
+            let recText = recommendations.join('<br><br>');
+            
+            // Add commitment-based note
+            if (quizData.commitment === 'full') {
+                recText += '<br><br>Since you want the best for ' + quizData.petName + ', we can combine all services for maximum recovery.';
+            } else if (quizData.commitment === 'moderate') {
+                recText += '<br><br>We\'ll prioritize the services that give ' + quizData.petName + ' the fastest results.';
+            } else {
+                recText += '<br><br>We\'ll focus on the most effective, cost-conscious approach.';
+            }
+
+            document.getElementById('rec-text').innerHTML = recText;
+        }
+
+        function scrollToContactForm() {
+            document.getElementById('interest').scrollIntoView({behavior: 'smooth'});
+        }
+
+        // Contact form submission
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('contact-name').value.trim();
+            const email = document.getElementById('contact-email').value.trim();
+            
+            if (!name || !email) {
+                alert('Please fill in your name and email');
+                return;
+            }
+            
+            const formData = {
+                type: 'contact-form',
+                name: name,
+                email: email,
+                phone: document.getElementById('contact-phone').value.trim(),
+                petType: document.getElementById('contact-pet-type').value,
+                reason: document.getElementById('contact-reason').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Store in localStorage
+            let submissions = JSON.parse(localStorage.getItem('petPTSubmissions') || '[]');
+            submissions.push(formData);
+            localStorage.setItem('petPTSubmissions', JSON.stringify(submissions));
+            
+            trackAnalytics('contactFormSubmitted', formData);
+            
+            // Show success modal with small delay to ensure it displays
+            setTimeout(() => {
+                const modal = document.getElementById('successModal');
+                if (modal) {
+                    modal.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }, 100);
+            
+            // Reset form
+            document.getElementById('contact-form').reset();
+            
+            console.log('Contact form submission:', formData);
+        }
+
+        function closeSuccessModal() {
+            const modal = document.getElementById('successModal');
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('successModal');
+            if (event.target === modal) {
+                closeSuccessModal();
+            }
+        });
+
+        // Track page view
+        function trackAnalytics(eventType, data = {}) {
+            let events = JSON.parse(localStorage.getItem('pawstrideAnalytics') || '[]');
+            events.push({
+                type: eventType,
+                timestamp: new Date().toISOString(),
+                data: data
+            });
+            localStorage.setItem('pawstrideAnalytics', JSON.stringify(events));
+        }
+
+        // Start quiz on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('quiz-screen-0').classList.add('active');
+            trackAnalytics('pageView');
+        });
+
+        // View submissions helper
+        function viewSubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('petPTSubmissions') || '[]');
+            console.table(submissions);
+            return submissions;
+        }
+
+        // Scheduler Modal Functions
+        let scheduleData = {
+            pet: '',
+            dates: [],
+            frequency: '',
+            time: '',
+            goals: [],
+            name: '',
+            email: '',
+            phone: ''
+        };
+
+        function generateCalendar() {
+            const container = document.getElementById('calendarContainer');
+            const today = new Date();
+            container.innerHTML = '';
+
+            // Generate 4 weeks of calendars
+            for (let weekOffset = 0; weekOffset < 4; weekOffset++) {
+                const weekStart = new Date(today);
+                weekStart.setDate(weekStart.getDate() + (weekOffset * 7));
+
+                const monthName = weekStart.toLocaleString('default', { month: 'long', year: 'numeric' });
+                
+                const monthDiv = document.createElement('div');
+                monthDiv.className = 'calendar-month';
+                
+                const header = document.createElement('h4');
+                header.textContent = `Week of ${weekStart.toLocaleDateString('default', { month: 'short', day: 'numeric' })}`;
+                monthDiv.appendChild(header);
+
+                const grid = document.createElement('div');
+                grid.className = 'calendar-grid';
+
+                // Day headers
+                const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+                dayHeaders.forEach(day => {
+                    const header = document.createElement('div');
+                    header.className = 'calendar-day-header';
+                    header.textContent = day;
+                    grid.appendChild(header);
+                });
+
+                // Days
+                for (let i = 0; i < 7; i++) {
+                    const currentDate = new Date(weekStart);
+                    currentDate.setDate(currentDate.getDate() + i);
+
+                    const dayDiv = document.createElement('button');
+                    dayDiv.className = 'calendar-day';
+                    const dayOfWeek = currentDate.getDay();
+                    const isAvailable = [0, 1, 2].includes(dayOfWeek); // 0=Sun, 1=Mon, 2=Tue
+
+                    if (!isAvailable) {
+                        dayDiv.classList.add('disabled');
+                        dayDiv.textContent = currentDate.getDate();
+                        dayDiv.disabled = true;
+                    } else {
+                        dayDiv.classList.add('available');
+                        dayDiv.textContent = currentDate.getDate();
+                        const dateStr = currentDate.toISOString().split('T')[0];
+                        
+                        if (scheduleData.dates.includes(dateStr)) {
+                            dayDiv.classList.add('selected');
+                        }
+
+                        dayDiv.onclick = (e) => {
+                            e.preventDefault();
+                            toggleDate(dateStr, dayDiv);
+                        };
+                    }
+                    grid.appendChild(dayDiv);
+                }
+
+                monthDiv.appendChild(grid);
+                container.appendChild(monthDiv);
+            }
+        }
+
+        function toggleDate(dateStr, element) {
+            const index = scheduleData.dates.indexOf(dateStr);
+            if (index > -1) {
+                scheduleData.dates.splice(index, 1);
+                element.classList.remove('selected');
+            } else {
+                scheduleData.dates.push(dateStr);
+                element.classList.add('selected');
+            }
+            updateSelectedDatesDisplay();
+        }
+
+        function updateSelectedDatesDisplay() {
+            const count = scheduleData.dates.length;
+            document.getElementById('selectedDatesCount').textContent = count;
+
+            const list = document.getElementById('selectedDatesList');
+            list.innerHTML = '';
+            
+            const sortedDates = [...scheduleData.dates].sort();
+            sortedDates.forEach(dateStr => {
+                const date = new Date(dateStr);
+                const formatted = date.toLocaleDateString('default', { month: 'short', day: 'numeric', weekday: 'short' });
+                const badge = document.createElement('div');
+                badge.className = 'date-badge';
+                badge.textContent = formatted;
+                list.appendChild(badge);
+            });
+        }
+
+        function validateDatesAndNext() {
+            if (scheduleData.dates.length === 0) {
+                alert('Please select at least one available date');
+                return;
+            }
+            nextScheduleScreen(2);
+        }
+
+        function openScheduler() {
+            document.getElementById('schedulerModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            trackAnalytics('schedulerOpen');
+            generateCalendar();
+        }
+
+        function closeScheduler() {
+            document.getElementById('schedulerModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            resetScheduler();
+        }
+
+        function nextScheduleScreen(screenNum) {
+            document.querySelectorAll('.schedule-screen').forEach(s => s.classList.remove('active'));
+            document.getElementById(`sched-screen-${screenNum}`).classList.add('active');
+            updateScheduleSummary();
+        }
+
+        function prevScheduleScreen() {
+            const current = document.querySelector('.schedule-screen.active');
+            const screenNum = parseInt(current.id.split('-')[2]);
+            if (screenNum > 0) {
+                nextScheduleScreen(screenNum - 1);
+            }
+        }
+
+        function submitPetInfo() {
+            const petName = document.getElementById('petNameInput').value.trim();
+            const petType = document.getElementById('petTypeInput').value;
+
+            if (!petName) {
+                alert('Please enter your pet\'s name');
+                return;
+            }
+            if (!petType) {
+                alert('Please select a pet type');
+                return;
+            }
+
+            scheduleData.pet = petType.split(' ')[1] === 'Dog' ? `${petType} ${petName}` : `${petType} ${petName}`;
+            document.getElementById('sched-pet-name-1').textContent = petName;
+            document.getElementById('sched-pet-name-2').textContent = petName;
+            nextScheduleScreen(1);
+        }
+
+        function selectSchedulePet(pet) {
+            scheduleData.pet = pet;
+            document.getElementById('sched-pet-name-1').textContent = pet;
+            document.getElementById('sched-pet-name-2').textContent = pet;
+        }
+
+        function selectScheduleFreq(freq) {
+            scheduleData.frequency = freq;
+        }
+
+        function selectScheduleTime(time) {
+            scheduleData.time = time;
+        }
+
+        function toggleScheduleGoal(checkbox) {
+            const parent = checkbox.parentElement;
+            if (checkbox.checked) {
+                parent.classList.add('checked');
+                scheduleData.goals.push(checkbox.value);
+            } else {
+                parent.classList.remove('checked');
+                scheduleData.goals = scheduleData.goals.filter(g => g !== checkbox.value);
+            }
+        }
+
+        function updateScheduleSummary() {
+            document.getElementById('sched-summary-pet').textContent = scheduleData.pet || '-';
+            
+            // Format dates for display
+            const dateCount = scheduleData.dates.length;
+            document.getElementById('sched-summary-dates').textContent = dateCount > 0 ? `${dateCount} dates selected` : '-';
+            
+            document.getElementById('sched-summary-freq').textContent = scheduleData.frequency || '-';
+            document.getElementById('sched-summary-time').textContent = scheduleData.time || '-';
+            document.getElementById('sched-summary-goals').textContent = scheduleData.goals.length > 0 ? scheduleData.goals.join(', ') : 'Not specified';
+        }
+
+        function submitSchedulerBooking() {
+            const name = document.getElementById('schedulerName').value.trim();
+            const email = document.getElementById('schedulerEmail').value.trim();
+            const phone = document.getElementById('schedulerPhone').value.trim();
+
+            if (!name || !email || !phone) {
+                alert('Please fill in all contact information');
+                return;
+            }
+
+            scheduleData.name = name;
+            scheduleData.email = email;
+            scheduleData.phone = phone;
+
+            // Save to submissions
+            const submission = {
+                type: 'scheduler',
+                ...scheduleData,
+                timestamp: new Date().toISOString()
+            };
+
+            let submissions = JSON.parse(localStorage.getItem('petPTSubmissions') || '[]');
+            submissions.push(submission);
+            localStorage.setItem('petPTSubmissions', JSON.stringify(submissions));
+
+            trackAnalytics('schedulerComplete', submission);
+            nextScheduleScreen(7);
+        }
+
+        function resetScheduler() {
+            scheduleData = { pet: '', dates: [], frequency: '', time: '', goals: [], name: '', email: '', phone: '' };
+            document.querySelectorAll('.schedule-checkbox input').forEach(cb => {
+                cb.checked = false;
+                cb.parentElement.classList.remove('checked');
+            });
+            document.querySelectorAll('.schedule-option').forEach(opt => opt.classList.remove('selected'));
+            document.getElementById('petNameInput').value = '';
+            document.getElementById('petTypeInput').value = '';
+            document.getElementById('schedulerName').value = '';
+            document.getElementById('schedulerEmail').value = '';
+            document.getElementById('schedulerPhone').value = '';
+            nextScheduleScreen(0);
+        }
+
+        // Close modal on outside click
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('schedulerModal');
+            if (event.target === modal) {
+                closeScheduler();
+            }
+        });
+    </script>
+</body>
+</html>
